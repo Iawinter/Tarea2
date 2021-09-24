@@ -33,7 +33,7 @@ class LigasList(APIView):
         teams = "https://iawinter-tarea2.herokuapp.com/leagues/"+id+"/teams"
         players = "https://iawinter-tarea2.herokuapp.com/leagues/"+id+"/players"
         yo = "https://iawinter-tarea2.herokuapp.com/leagues/"+id
-        sport = info['age']
+        sport = info['sport']
         nueva_liga = Ligas.objects.create(id=id, name=info['name'], sport=sport, teams=teams, players=players)
         nueva_liga.self = yo
         nueva_liga.save()
