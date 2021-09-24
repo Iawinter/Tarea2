@@ -23,7 +23,8 @@ class LigasList(APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
         if type(info['name']) != str or type(info['sport']) != str:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-        id = b64encode(info['name'].encode()).decode('utf-8')
+        id = info['name']+":"info['sport']
+        id = b64encode(id.encode()).decode('utf-8')
         if len(id) > 22:
             id = id[0:22]
         liga = Ligas.objects.all().filter(id=id)
@@ -121,7 +122,7 @@ class EquiposLiga(APIView):
         liga = Ligas.objects.all().filter(id=id)
         if not liga:
             return Response(status=status.HTTP_422_UNPROCESSABLE_ENTITY)
-        id1 = info['name']+":"+id
+        id1 = info['name']+":"+info['city']
         id1 = b64encode(id1.encode()).decode('utf-8')
         if len(id1) > 22:
             id1 = id1[0:22]
@@ -174,7 +175,7 @@ class JugadoresEquipo(APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
         if type(info['name']) != str or type(info['age']) != int or type(info['position']) != str:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-        id1 = info['name']+":"+id
+        id1 = info['name']+":"+info['position']
         id1 = b64encode(id1.encode()).decode('utf-8')
         if len(id1) > 22:
             id1 = id1[0:22]
