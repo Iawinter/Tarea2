@@ -188,7 +188,7 @@ class JugadoresEquipo(APIView):
         liga= "https://iawinter-tarea2.herokuapp.com/league/"+id_liga
         team= "https://iawinter-tarea2.herokuapp.com/teams/"+id
         yo = "https://iawinter-tarea2.herokuapp.com/players/"+id1
-        nuevo_jugador = Jugador.objects.create(id=id1, team_id=id, name=info['name'], position=info['position'], times_trained=0, league=liga , team=team, padre=equipo)
+        nuevo_jugador = Jugador.objects.create(id=id1, team_id=id, name=info['name'], age=info['age'], position=info['position'], times_trained=0, league=liga , team=team, padre=equipo)
         nuevo_jugador.self = yo
         nuevo_jugador.save()
         serializer = JugadoresSerializer(nuevo_jugador)
