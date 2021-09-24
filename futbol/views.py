@@ -23,7 +23,7 @@ class LigasList(APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
         if type(info['name']) != str or type(info['sport']) != str:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-        id = info['name']+":"info['sport']
+        id = info['name']+":"+info['sport']
         id = b64encode(id.encode()).decode('utf-8')
         if len(id) > 22:
             id = id[0:22]
